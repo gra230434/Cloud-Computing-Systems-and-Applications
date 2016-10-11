@@ -27,8 +27,8 @@ class ControllerThread(threading.Thread):
         return self.sleepTime
 
     def cpu_model(self, cpu_period):
-      sleepTime = self.period - cpu_period
-      return sleepTime
+        sleepTime = self.period - cpu_period
+        return sleepTime
 
     def getCpuTarget(self):
         return self.CT

@@ -5,14 +5,13 @@ class closedLoopActuator():
     """
         Generates CPU load by tuning the sleep time
     """
-    def __init__(self, controller, monitor, duration, cpu_core, target, plot):
+    def __init__(self, controller, monitor, duration, cpu_core, target):
         self.controller = controller
         self.monitor = monitor
         self.duration = duration
         self.target = target
         self.controller.setCpu(self.monitor.getCpuLoad())
         self.period = 0.05  # actuation period  in seconds
-        self.last_plot_time = time.time()
         self.start_time = time.time()
 
     def generate_load(self, sleep_time):
@@ -38,7 +37,6 @@ class closedLoopActuator():
             self.controller.setCpu(self.monitor.getCpuLoad())
             sleep_time = self.controller.getSleepTime()
             self.generate_load(sleep_time)
-            self.sendPlotSample()
         return sleep_time
 
     def run_sequence(self, sequence):
@@ -51,4 +49,3 @@ class closedLoopActuator():
                 sleep_time = self.controller.getSleepTime()
                 self.generate_load(sleep_time)
                 self.monitor.setSleepTime(sleep_time)
-                self.sendPlotSample()
