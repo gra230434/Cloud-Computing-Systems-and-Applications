@@ -18,7 +18,6 @@ class MonitorThread(threading.Thread):
         self.sleepTime = 0.03
         self.cpuTarget = 0.5
         self.cpu_core = cpu_core
-        self.dynamics = {"time":[], "cpu":[], "sleepTimeTarget":[], "cpuTarget":[],  "sleepTime":[],}
         super(MonitorThread, self).__init__()
 
     def getCpuLoad(self):
@@ -32,9 +31,6 @@ class MonitorThread(threading.Thread):
 
     def setCPUTarget(self, cpuTarget):
         self.cpuTarget = cpuTarget
-
-    def getDynamics(self):
-        return self.dynamics
 
     def run(self):
         start_time = time.time()
@@ -50,11 +46,4 @@ class MonitorThread(threading.Thread):
                 self.sample = p.get_cpu_percent(self.sampling_interval)
             except AttributeError:
                 self.sample = p.cpu_percent(self.sampling_interval)
-            # first order filter on the measurement samples
             self.cpu = self.alpha * self.sample + (1 - self.alpha)*self.cpu
-            # self.cpu_log.append(self.cpu)
-            self.dynamics['time'].append(time.time() - start_time)
-            self.dynamics['cpu'].append(self.cpu)
-            self.dynamics['sleepTimeTarget'].append(self.sleepTimeTarget)
-            self.dynamics['sleepTime'].append(self.sleepTime)
-            self.dynamics['cpuTarget'].append(self.cpuTarget)
