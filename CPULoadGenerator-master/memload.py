@@ -2,7 +2,13 @@ import sys
 import getopt
 import resource
 import time
+from psutil import virtual_memory
 
+def usage():
+    print ' -h help \n' \
+          ' -m mem loading\n' \
+          ' -d time\n' \
+          ''
 
 try:
     options, args = getopt.getopt(sys.argv[1:], "hm:d:",["help", "mem=", "time="])
@@ -10,15 +16,19 @@ try:
         if name in ('-h', '--help'):
             usage()
         if name in ('-m', '--mem'):
-            memusage = int(value)
+            memusage = float(value)
         if name in ('-d', '--time'):
             memtime = int(value)
 except getopt.GetoptError:
-    print("You can tey 'python main.py -l 20 -d 20'")
+    print("You can try 'python memload.py -m 20 -d 20'")
 
 list1 = []
+unitusage = 8697520
 
-for j in range(3,5*memusage):
+mem = virtual_memory()
+steps = int(mem.total) * memusage / unitusage
+
+for j in range(int(steps)):
     for i in range(0,1000000):
         list1.append('abcdefg')
 
