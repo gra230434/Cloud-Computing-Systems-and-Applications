@@ -23,13 +23,14 @@ except getopt.GetoptError:
     print("You can try 'python memload.py -m 20 -d 20'")
 
 list1 = []
-unitusage = 8697520
+unitusage = 8600000
 
 mem = virtual_memory()
 steps = int(mem.total) * memusage / unitusage
 
+start = time.time()
 for j in range(int(steps)):
     for i in range(0,1000000):
         list1.append('abcdefg')
-
-time.sleep( memtime )
+end = time.time()
+time.sleep( memtime-(end-start) )

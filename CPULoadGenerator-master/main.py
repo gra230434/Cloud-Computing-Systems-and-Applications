@@ -17,7 +17,7 @@ class myThread (threading.Thread):
         createuserlog(self.threadID, self.load, self.time)
 
 def createuserlog(threadID, load, time):
-    command = "python CPULoadGenerator.py -l " + str(load) + " -d " + str(time) + " -c " + str(threadID)
+    command = "python CPUload.py -l " + str(load) + " -d " + str(time) + " -c " + str(threadID)
     if os.system( command ):
         print "fail"
 
@@ -47,7 +47,7 @@ try:
             maintime = int(value)
     print("load: %.2f mem: %.2f disk: %.2f time: %d" % (maincpu, mainmem, maindisk,maintime))
 except getopt.GetoptError:
-    print("You can tey 'python main.py -l 20 -d 20'")
+    print("You can tey 'python main.py -l 20 -m 20 -i 20 -d 20'")
 
 if maintime == 0:
     maintime = 1200
@@ -56,14 +56,14 @@ elif maintime <= 10:
 
 cmd1 = "-m " + str(mainmem)
 cmd2 = "-d " + str(maintime)
-pid = subprocess.Popen(['python', 'memload.py', cmd1, cmd2])
+pid = subprocess.Popen(['python', 'MEMload.py', cmd1, cmd2])
 time.sleep( 5 )
 
 maintime -= 5
 
 cmd1 = "-i " + str(maindisk)
 cmd2 = "-d " + str(maintime)
-pid = subprocess.Popen(['python', 'diskload.py', cmd1, cmd2])
+pid = subprocess.Popen(['python', 'IOload.py', cmd1, cmd2])
 time.sleep( 5 )
 
 maintime -= 5
