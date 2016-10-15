@@ -45,6 +45,8 @@ with open('bigfile', 'wb') as bigfile:
         millis1 = int(round(time.time() * 1000))
         bigfile.write('0'*inputsize*1048575)
         millis2 = int(round(time.time() * 1000))
-        time.sleep(0.5-float((millis2-millis1)/1000.0))
+        throughtime = 0.5-float(float(millis2-millis1)/1000.0)
+        if throughtime > 0 :
+            time.sleep(throughtime)
 
 os.system("rm bigfile")

@@ -57,9 +57,9 @@ elif maintime <= 10:
 cmd1 = "-m " + str(mainmem)
 cmd2 = "-d " + str(maintime)
 pid = subprocess.Popen(['python', 'MEMload.py', cmd1, cmd2])
-time.sleep( 5 )
+time.sleep( 10 )
 
-maintime -= 5
+maintime -= 10
 
 cmd1 = "-i " + str(maindisk)
 cmd2 = "-d " + str(maintime)

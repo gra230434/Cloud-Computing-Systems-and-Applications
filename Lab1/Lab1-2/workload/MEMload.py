@@ -34,7 +34,7 @@ mem = virtual_memory()
 steps = int(mem.total) * memusage / unitusage
 
 start = time.time()
-for j in range(int(steps)):
+for j in range(int(steps)+1):
     for i in range(0,1000000):
         list1.append('abcdefg')
 end = time.time()
