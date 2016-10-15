@@ -5,10 +5,10 @@ import getopt
 import subprocess
 
 def usage():
-    print ' -h help \n' \
+    print(' -h help \n' \
           ' -m mem loading\n' \
           ' -d time\n' \
-          ''
+          '')
 
 diskusage = 0.0
 disktime  = 0

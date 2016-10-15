@@ -25,15 +25,15 @@ if __name__ == "__main__":
     try:
         options.parseOptions()
     except Exception:
-        print '%s: %s' % (sys.argv[0], e)
-        print '%s: Try --help for usage details.' % (sys.argv[0])
+        print('%s: %s' % (sys.argv[0], e))
+        print('%s: Try --help for usage details.' % (sys.argv[0]))
         sys.exit(1)
     else:
         if options['cpuLoad'] < 0 or options['cpuLoad'] > 1:
-            print "CPU target load out of the range [0,1]"
+            print("CPU target load out of the range [0,1]")
             sys.exit(1)
         if options['duration'] < 0:
-            print "Invalid duration"
+            print("Invalid duration")
             sys.exit(1)
         if options['cpu_core'] >= multiprocessing.cpu_count():
             print("You have only %d cores on your machine" % multiprocessing.cpu_count())

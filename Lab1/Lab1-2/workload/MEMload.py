@@ -5,10 +5,10 @@ import time
 from psutil import virtual_memory
 
 def usage():
-    print ' -h help \n' \
+    print(' -h help \n' \
           ' -m mem loading\n' \
           ' -d time\n' \
-          ''
+          '')
 
 memusage = 0.0
 memtime  = 0

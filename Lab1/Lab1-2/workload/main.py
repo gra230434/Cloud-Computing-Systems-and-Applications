@@ -19,13 +19,13 @@ class myThread (threading.Thread):
 def createuserlog(threadID, load, time):
     command = "python CPUload.py -l " + str(load) + " -d " + str(time) + " -c " + str(threadID)
     if os.system( command ):
-        print "fail"
+        print("fail")
 
 def usage():
-    print ' -h help \n' \
+    print(' -h help \n' \
           ' -l cpu loading\n' \
           ' -d time\n' \
-          ''
+          '')
 
 maincpu = 0
 mainmem = 0
