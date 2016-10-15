@@ -10,6 +10,9 @@ def usage():
           ' -d time\n' \
           ''
 
+memusage = 0.0
+memtime  = 0
+
 try:
     options, args = getopt.getopt(sys.argv[1:], "hm:d:",["help", "mem=", "time="])
     for name, value in options:
@@ -22,6 +25,8 @@ try:
 except getopt.GetoptError:
     print("You can try 'python memload.py -m 20 -d 20'")
 
+if memtime == 0:
+    memtime = 20
 list1 = []
 unitusage = 8600000
 

@@ -10,6 +10,9 @@ def usage():
           ' -d time\n' \
           ''
 
+diskusage = 0.0
+disktime  = 0
+
 try:
     options, args = getopt.getopt(sys.argv[1:], "hi:d:",["help", "io=", "time="])
     for name, value in options:
@@ -19,8 +22,13 @@ try:
             diskusage = float(value)
         if name in ('-d', '--time'):
             disktime = int(value)
+        else:
+            disktime = 20
 except getopt.GetoptError:
     print("You can try 'python diskload.py -i 0.20 -d 20'")
+
+if disktime == 0:
+    disktime = 20
 
 cmd = ['dd', 'bs=1M', 'count=256', 'if=/dev/zero', 'of=/tmp/output', 'conv=fdatasync']
 output = subprocess.check_output(cmd, stderr=subprocess.STDOUT)

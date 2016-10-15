@@ -17,7 +17,7 @@ class Options(usage.Options):
     """
     optParameters = [
             ["cpuLoad", "l", 0.2, "Cpu Target Load", float],
-            ["duration", "d", 10, "Duration", int],
+            ["duration", "d", 20, "Duration", int],
             ["cpu_core", "c", 0, "Select the CPU on which generate the load", int]
         ]
 
