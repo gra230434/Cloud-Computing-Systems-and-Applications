@@ -1,6 +1,3 @@
-#!/usr/bin/python
-
-
 import multiprocessing
 from twisted.python import usage
 import sys
