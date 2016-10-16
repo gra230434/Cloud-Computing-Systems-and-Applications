@@ -32,10 +32,10 @@ list1 = []
 unitusage = 8600000
 
 mem = virtual_memory()
-steps = int(mem.total) * memusage / unitusage
+steps = int(mem.total) * memusage / unitusage + int(memusage*10)
 
 start = time.time()
-for j in range(int(steps)+1):
+for j in range(int(steps)):
     for i in range(0, 1000000):
         list1.append('abcdefg')
 end = time.time()
