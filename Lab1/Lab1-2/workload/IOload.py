@@ -3,7 +3,7 @@ import sys
 import time
 import getopt
 import subprocess
-from multiprocessing import Process, Queue
+import multiprocessing
 
 
 def usage():
@@ -15,7 +15,7 @@ def usage():
 
 def writetofile( inputsize ):
     bigfile = open('bigfile','wb')
-    for val in range(inputsize):
+    for val in range(int(inputsize)):
         bigfile.write('00000000'*131072)
     bigfile.close()
 
@@ -53,11 +53,12 @@ os.system("rm /tmp/output")
 
 inputsize = (int(inputsize)+1) / 2
 
-the_proc = Process(target = writetofile, args=(inputsize,))
+the_proc = multiprocessing.Process(target = writetofile, args = (inputsize,))
 
 for i in range(disktime*2):
     millis1 = int(round(time.time() * 1000))
     the_proc.start()
+    the_proc.join()
     millis2 = int(round(time.time() * 1000))
     throughtime = 0.5-float(float(millis2-millis1)/1000.0)
     print throughtime
