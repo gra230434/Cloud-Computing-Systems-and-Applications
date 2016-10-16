@@ -1,5 +1,5 @@
 # CPU, Memory, Disk I/O 負載
-main.py 是程式最主要主程式，會讀取使用者的參數並呼叫 CPUload.py MEMload.py IOload.py<br>
+Main.py 是程式最主要主程式，會讀取使用者的參數並呼叫 CPUload.py MEMload.py IOload.py<br>
 程式如果使用者沒有規定最長執行時間，執行時間為 1200 sec
 
 不可以中斷程式，因為中斷程式不會關閉子程式，必須等待子程式結束，系統資源才會返回給使用者

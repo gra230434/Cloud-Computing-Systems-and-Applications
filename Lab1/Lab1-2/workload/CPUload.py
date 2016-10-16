@@ -15,7 +15,8 @@ class Options(usage.Options):
     optParameters = [
             ["cpuLoad", "l", 0.2, "Cpu Target Load", float],
             ["duration", "d", 20, "Duration", int],
-            ["cpu_core", "c", 0, "Select the CPU on which generate the load", int]
+            ["cpu_core", "c", 0,
+             "Select the CPU on which generate the load", int]
         ]
 
 if __name__ == "__main__":
@@ -36,7 +37,8 @@ if __name__ == "__main__":
             print("Invalid duration")
             sys.exit(1)
         if options['cpu_core'] >= multiprocessing.cpu_count():
-            print("You have only %d cores on your machine" % multiprocessing.cpu_count())
+            print("You have only %d cores on your machine"
+                  % multiprocessing.cpu_count())
             sys.exit(1)
 
     monitor = MonitorThread(options['cpu_core'], 0.1)
@@ -46,7 +48,8 @@ if __name__ == "__main__":
     control.start()
     control.setCpuTarget(options['cpuLoad'])
 
-    actuator = closedLoopActuator(control, monitor, options['duration'], options['cpu_core'], options['cpuLoad'])
+    actuator = closedLoopActuator(control, monitor, options['duration'],
+                                  options['cpu_core'], options['cpuLoad'])
     actuator.run()
 
     monitor.running = 0

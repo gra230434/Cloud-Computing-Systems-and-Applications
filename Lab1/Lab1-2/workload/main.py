@@ -13,18 +13,22 @@ class myThread (threading.Thread):
         self.threadID = threadID
         self.load = load
         self.time = time
+
     def run(self):
         createuserlog(self.threadID, self.load, self.time)
 
+
 def createuserlog(threadID, load, time):
-    command = "python CPUload.py -l " + str(load) + " -d " + str(time) + " -c " + str(threadID)
-    if os.system( command ):
+    command = "python CPUload.py -l " + str(load) + " -d " + str(time) \
+            + " -c " + str(threadID)
+    if os.system(command):
         print("fail")
 
+
 def usage():
-    print(' -h help \n' \
-          ' -l cpu loading\n' \
-          ' -d time\n' \
+    print(' -h help \n'
+          ' -l cpu loading\n'
+          ' -d time\n'
           '')
 
 maincpu = 0
@@ -33,7 +37,9 @@ maindisk = 0
 maintime = 0
 
 try:
-    options, args = getopt.getopt(sys.argv[1:], "hl:m:i:d:",["help", "load=", "mem=", "io=","time="])
+    options, args = getopt.getopt(sys.argv[1:],
+                                  "hl:m:i:d:",
+                                  ["help", "load=", "mem=", "io=", "time="])
     for name, value in options:
         if name in ('-h', '--help'):
             usage()
@@ -45,7 +51,8 @@ try:
             maindisk = int(value)/100.0
         if name in ('-d', '--time'):
             maintime = int(value)
-    print("load: %.2f mem: %.2f disk: %.2f time: %d" % (maincpu, mainmem, maindisk,maintime))
+    print("load: %.2f mem: %.2f disk: %.2f time: %d"
+          % (maincpu, mainmem, maindisk, maintime))
 except getopt.GetoptError:
     print("You can tey 'python main.py -l 20 -m 20 -i 20 -d 20'")
 
@@ -57,17 +64,18 @@ elif maintime <= 10:
 cmd1 = "-m " + str(mainmem)
 cmd2 = "-d " + str(maintime)
 pid = subprocess.Popen(['python', 'MEMload.py', cmd1, cmd2])
-time.sleep( 10 )
+time.sleep(10)
 
 maintime -= 10
 
 cmd1 = "-i " + str(maindisk)
 cmd2 = "-d " + str(maintime)
 pid = subprocess.Popen(['python', 'IOload.py', cmd1, cmd2])
-time.sleep( 5 )
+time.sleep(5)
 
 maintime -= 5
 
-thrList = [myThread(i, maincpu, maintime) for i in range(multiprocessing.cpu_count())]
+thrList = [myThread(i, maincpu, maintime)
+           for i in range(multiprocessing.cpu_count())]
 for i in range(multiprocessing.cpu_count()):
     thrList[i].start()

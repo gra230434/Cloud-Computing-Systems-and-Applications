@@ -1,20 +1,21 @@
 import sys
 import getopt
-import resource
 import time
 from psutil import virtual_memory
 
+
 def usage():
-    print(' -h help \n' \
-          ' -m mem loading\n' \
-          ' -d time\n' \
+    print(' -h help \n'
+          ' -m mem loading\n'
+          ' -d time\n'
           '')
 
 memusage = 0.0
-memtime  = 0
+memtime = 0
 
 try:
-    options, args = getopt.getopt(sys.argv[1:], "hm:d:",["help", "mem=", "time="])
+    options, args = getopt.getopt(sys.argv[1:],
+                                  "hm:d:", ["help", "mem=", "time="])
     for name, value in options:
         if name in ('-h', '--help'):
             usage()
@@ -35,7 +36,7 @@ steps = int(mem.total) * memusage / unitusage
 
 start = time.time()
 for j in range(int(steps)+1):
-    for i in range(0,1000000):
+    for i in range(0, 1000000):
         list1.append('abcdefg')
 end = time.time()
-time.sleep( memtime-(end-start) )
+time.sleep(memtime-(end-start))
