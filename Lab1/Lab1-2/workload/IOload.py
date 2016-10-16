@@ -14,7 +14,7 @@ def usage():
 
 
 def writetofile( inputsize ):
-    bigfile = open(bigfile,'wb')
+    bigfile = open('bigfile','wb')
     for val in range(inputsize):
         bigfile.write('00000000'*131072)
     bigfile.close()
