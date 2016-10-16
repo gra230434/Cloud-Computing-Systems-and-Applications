@@ -60,8 +60,10 @@ CPU 平均20%的系統負載，記憶體使用 20%，硬碟寫入 20%，持續�
 
     python main.py --load=40 --mem=60 --io=30 --time=90
 
-![alt tag](https://github.com/gra230434/Cloud-Computing-Systems-and-Applications/blob/master/Lab1/Lab1-2/workload/img/cpuandram.PNG)
-![alt tag](https://github.com/gra230434/Cloud-Computing-Systems-and-Applications/blob/master/Lab1/Lab1-2/workload/img/io.PNG)
+![alt tag](https://github.com/gra230434/Cloud-Computing-Systems-and-Applications/blob/master/Lab1/Lab1-2/workload/img/1.PNG)
+![alt tag](https://github.com/gra230434/Cloud-Computing-Systems-and-Applications/blob/master/Lab1/Lab1-2/workload/img/2.PNG)
+![alt tag](https://github.com/gra230434/Cloud-Computing-Systems-and-Applications/blob/master/Lab1/Lab1-2/workload/img/3.PNG)
+![alt tag](https://github.com/gra230434/Cloud-Computing-Systems-and-Applications/blob/master/Lab1/Lab1-2/workload/img/4.PNG)
 
 ## 提醒
 
