@@ -45,7 +45,7 @@ void *thread_func(void *param)
 
 }
 
-void *thread_func(void *param)
+void *thread_func1(void *param)
 {
     CPU_ZERO(&cpuset);
     CPU_SET(1, &cpuset); /* cpu 0 is in cpuset now */
