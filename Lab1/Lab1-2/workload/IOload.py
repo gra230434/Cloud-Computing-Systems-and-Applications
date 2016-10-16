@@ -13,8 +13,7 @@ def usage():
           '')
 
 
-def writetofile():
-    global inputsize
+def writetofile(inputsize):
     bigfile = open('bigfile','wb')
     for val in range(int(inputsize)):
         bigfile.write('00000000'*131072)
@@ -23,6 +22,7 @@ def writetofile():
 
 diskusage = 0.0
 disktime = 0
+jobs = []
 
 try:
     options, args = getopt.getopt(sys.argv[1:],
@@ -54,7 +54,8 @@ os.system("rm /tmp/output")
 
 inputsize = (int(inputsize)+1) / 2
 
-the_proc = multiprocessing.Process(target = writetofile)
+the_proc = multiprocessing.Process(target = writetofile, args=(inputsize,))
+jobs.append(the_proc)
 
 for i in range(disktime*2):
     millis1 = int(round(time.time() * 1000))
