@@ -58,7 +58,7 @@ CPU 平均20%的系統負載，記憶體使用 20%，硬碟寫入 20%，持續�
 
 ## 使用結果
 
-    python main.py --load=40 --mem=60 --io=30 --time=90
+    python main.py --load=20 --mem=40 --io=30 --time=90
 
 ![alt tag](https://github.com/gra230434/Cloud-Computing-Systems-and-Applications/blob/master/Lab1/Lab1-2/workload/img/1.PNG)
 ![alt tag](https://github.com/gra230434/Cloud-Computing-Systems-and-Applications/blob/master/Lab1/Lab1-2/workload/img/2.PNG)
