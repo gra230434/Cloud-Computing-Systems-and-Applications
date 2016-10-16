@@ -21,7 +21,7 @@ double waste_time(long n)
 {
     double res = 0;
     long i = 0;
-    while (i <n * 200000000) {
+    while (i <n * 100000000) {
         i++;
         res += sqrt(i);
     }
