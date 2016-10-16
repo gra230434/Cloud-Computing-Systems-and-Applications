@@ -1,4 +1,4 @@
-all:
+main:
 	gcc pthread_setaffinity_np_test.c -o pthread_setaffinity_np_test -lm -lpthread
 	gcc pro_1.c -o pro_1 -lm -lpthread
 	gcc pro_2.c -o pro_2 -lm -lpthread
