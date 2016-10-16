@@ -11,7 +11,7 @@ clean:
 	rm -f pro_3
 
 run:
-	./pthread
+	./pthread_setaffinity_np_test
 	./pro_1
 	./pro_2
 	./pro_3
