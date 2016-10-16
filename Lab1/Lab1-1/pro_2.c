@@ -21,7 +21,7 @@ double waste_time(long n)
 {
     double res = 0;
     long i = 0;
-    while (i <n * 100000000) {
+    while (i <n * 200000000) {
         i++;
         res += sqrt(i);
     }
@@ -40,7 +40,24 @@ void *thread_func(void *param)
 
     printf("Core 0 is running!\n");
     /* waste some time so the work is visible with "top" */
-	  printf("result: %f\n", waste_time(10));
+	  printf("result: %f\n", waste_time(5));
+    pthread_exit(NULL);
+
+}
+
+void *thread_func(void *param)
+{
+    CPU_ZERO(&cpuset);
+    CPU_SET(1, &cpuset); /* cpu 0 is in cpuset now */
+
+    /* bind process to processor 0 */
+    if (pthread_setaffinity_np(pthread_self(), sizeof(cpu_set_t), &cpuset) !=0) {
+        perror("pthread_setaffinity_np");
+    }
+
+    printf("Core 1 is running!\n");
+    /* waste some time so the work is visible with "top" */
+	  printf("result: %f\n", waste_time(5));
     pthread_exit(NULL);
 
 }
@@ -52,6 +69,10 @@ int main(int argc, char *argv[])
     startwtime = time (NULL);
 
     if (pthread_create(&my_thread, NULL, thread_func, NULL) != 0)
+    {
+        perror("pthread_create");
+    }
+    if (pthread_create(&my_thread, NULL, thread_func1, NULL) != 0)
     {
         perror("pthread_create");
     }
