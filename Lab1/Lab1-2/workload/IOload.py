@@ -43,14 +43,16 @@ print("MAX wMB/s is: %s usage wMB/s is %.2f" % (speed, inputsize))
 os.system("rm /tmp/output")
 
 inputsize = (int(inputsize)+1) / 2
-with open('bigfile', 'wb') as bigfile:
-    for i in range(disktime*2):
-        millis1 = int(round(time.time() * 1000))
-        for val in range(131072):
-            bigfile.write('00000000'*inputsize)
-        millis2 = int(round(time.time() * 1000))
-        throughtime = 0.5-float(float(millis2-millis1)/1000.0)
-        if throughtime > 0:
-            time.sleep(throughtime)
+
+for i in range(disktime*2):
+    bigfile = open(bigfile,'wb')
+    millis1 = int(round(time.time() * 1000))
+    for val in range(131072):
+        bigfile.write('00000000'*inputsize)
+    millis2 = int(round(time.time() * 1000))
+    bigfile.close()
+    throughtime = 0.5-float(float(millis2-millis1)/1000.0)
+    if throughtime > 0:
+        time.sleep(throughtime)
 
 os.system("rm bigfile")
