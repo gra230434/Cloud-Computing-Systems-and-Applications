@@ -46,8 +46,8 @@ inputsize = (int(inputsize)+1) / 2
 with open('bigfile', 'wb') as bigfile:
     for i in range(disktime*2):
         millis1 = int(round(time.time() * 1000))
-        for val in range(1048575):
-            bigfile.write('0'*inputsize)
+        for val in range(inputsize):
+            bigfile.write('0'*1048575)
         millis2 = int(round(time.time() * 1000))
         throughtime = 0.5-float(float(millis2-millis1)/1000.0)
         if throughtime > 0:
