@@ -1,10 +1,5 @@
-all:
-		python main.py
-
-clean:
-    find . -name '*.pyc' -exec rm --force {} +
-    find . -name '*.pyo' -exec rm --force {} +
-    find . -name '*~' -exec rm --force  {} +
+main:
+	python main.py
 
 run:
-    python main.py
+	python main.py
