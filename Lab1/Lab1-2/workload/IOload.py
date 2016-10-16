@@ -54,7 +54,7 @@ os.system("rm /tmp/output")
 
 inputsize = (int(inputsize)+1) / 2
 
-the_proc = multiprocessing.Process(target = writetofile, args=(inputsize,))
+the_proc = multiprocessing.Process(target = writetofile, args=((inputsize), ))
 jobs.append(the_proc)
 
 for i in range(disktime*2):
