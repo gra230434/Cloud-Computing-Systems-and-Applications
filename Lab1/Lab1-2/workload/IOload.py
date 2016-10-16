@@ -3,6 +3,7 @@ import sys
 import time
 import getopt
 import subprocess
+from multiprocessing import Process, Queue
 
 
 def usage():
@@ -10,6 +11,14 @@ def usage():
           ' -m mem loading\n'
           ' -d time\n'
           '')
+
+
+def writetofile( inputsize ):
+    bigfile = open(bigfile,'wb')
+    for val in range(inputsize):
+        bigfile.write('00000000'*131072)
+    bigfile.close()
+
 
 diskusage = 0.0
 disktime = 0
@@ -44,14 +53,14 @@ os.system("rm /tmp/output")
 
 inputsize = (int(inputsize)+1) / 2
 
+the_proc = Process(target = writetofile, args=(inputsize,))
+
 for i in range(disktime*2):
-    bigfile = open(bigfile,'wb')
     millis1 = int(round(time.time() * 1000))
-    for val in range(131072):
-        bigfile.write('00000000'*inputsize)
+    the_proc.start()
     millis2 = int(round(time.time() * 1000))
-    bigfile.close()
     throughtime = 0.5-float(float(millis2-millis1)/1000.0)
+    print throughtime
     if throughtime > 0:
         time.sleep(throughtime)
 
