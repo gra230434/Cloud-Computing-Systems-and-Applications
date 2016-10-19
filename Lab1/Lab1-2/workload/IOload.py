@@ -14,7 +14,7 @@ def usage():
 
 
 def writetofile(inputsize):
-    bigfile = open('bigfile','wb')
+    bigfile = open('bigfile', 'wb')
     bigfile.write('00000000'*131072*int(inputsize))
     bigfile.close()
 
@@ -54,12 +54,12 @@ inputsize = (int(inputsize)+1) / 2
 
 for i in range(disktime*2):
     millis1 = int(round(time.time() * 1000))
-    the_proc = multiprocessing.Process(target = writetofile, args=((inputsize), ))
+    the_proc = multiprocessing.Process(target=writetofile,
+                                       args=((inputsize), ))
     the_proc.start()
     the_proc.join()
     millis2 = int(round(time.time() * 1000))
     throughtime = 0.5 - float(float(millis2-millis1)/1000.0)
-    print throughtime
     if throughtime > 0:
         time.sleep(throughtime)
 
