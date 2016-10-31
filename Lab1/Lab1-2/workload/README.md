@@ -19,7 +19,7 @@ main.py 是程式最主要主程式，會讀取使用者的參數並呼叫 CPUlo
 
     sudo apt-get install python-pip
     sudo apt-get build-dep python-lxml
-    sudo pip psutil
+    sudo pip install psutil
 
 ## 使用方式
 
